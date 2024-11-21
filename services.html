@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Services</title>
+</head>
+<style>
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.header {
+    background-color: #4CAF50;
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.search-section {
+    margin: 20px auto;
+    text-align: center;
+}
+
+#search-input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#search-btn:hover {
+    background-color: #45a049;
+}
+
+.room-types {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.room-types h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.room-card {
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.room-card h3 {
+    margin-bottom: 5px;
+}
+
+.room-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.room-card button:hover {
+    background-color: #45a049;
+}
+
+.availability-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.availability-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.availability-section th, .availability-section td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.availability-section th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+</style>
+<body>
+    <header class="header">
+        <h1>Hotel Booking Services</h1>
+    </header>
+
+    <div class="search-section">
+        <input type="text" placeholder="Search by room type..." id="search-input" onkeyup="filterRooms()">
+        <button id="search-btn" onclick="filterRooms()">Search</button>
+    </div>
+
+    <div class="room-types" id="room-types">
+        <h2>Room Types</h2>
+        <div class="room-card" data-room="Single Room with AC">
+            <h3>Single Room with AC</h3>
+            <p>Comfortable single room with air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Single Room without AC">
+            <h3>Single Room Non AC</h3>
+            <p>Economical single room without air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Two Sharing AC">
+            <h3>Two Sharing AC</h3>
+            <p>Spacious room for two people with air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Two Sharing Non AC">
+            <h3>Two Sharing Non AC</h3>
+            <p>Affordable room for two people without air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Four Sharing AC">
+            <h3>Four Sharing AC</h3>
+            <p>Room for four people with air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Four Sharing Non AC">
+            <h3>Four Sharing Non AC</h3>
+            <p>Room for four people without air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Eight Sharing AC">
+            <h3>Eight Sharing AC</h3>
+            <p>Large room for eight people with air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="Eight Sharing Non AC">
+            <h3>Eight Sharing Non AC</h3>
+            <p>Large room for eight people without air conditioning.</p>
+            <button>Check Availability</button>
+        </div>
+        <div class="room-card" data-room="24 in 1">
+            <h3>24 in 1</h3>
+            <p>Spacious dormitory for 24 people.</p>
+            <button>Check Availability</button>
+        </div>
+    </div>
+
+    <div class="availability-section">
+        <h2>Available Rooms</h2>
+        <table>
+            <tr>
+                <th>Room Type</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Single Room with AC</td>
+                <td>$80</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>Single Room without AC</td>
+                <td>$60</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>Two Sharing AC</td>
+                <td>$100</td>
+                <td>Not Available</td>
+            </tr>
+            <tr>
+                <td>Two Sharing Non AC</td>
+                <td>$90</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>Four Sharing AC</td>
+                <td>$120</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>Four Sharing Non AC</td>
+                <td>$100</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>Eight Sharing AC</td>
+                <td>$140</td>
+                <td>Not Available</td>
+            </tr>
+            <tr>
+                <td>Eight Sharing Non AC</td>
+                <td>$130</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>24 in 1</td>
+                <td>$300</td>
+                <td>Available</td>
+            </tr>
+        </table>
+    </div>
+
+    
+</body>
+<script>
+      function filterRooms() {
+    const searchInput = document.getElementById("search-input").value.toLowerCase();
+    const roomCards = document.querySelectorAll(".room-card");
+
+    roomCards.forEach((card) => {
+        const roomType = card.getAttribute("data-room").toLowerCase();
+        if (roomType.includes(searchInput)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+</script>
+</html>
